@@ -1,9 +1,10 @@
 import Product from "./pages/Product";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
-import Register from "./pages/Register";
+import Register from "./pages/register/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import AllProductList from "./pages/AllProductList";
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,18 +24,23 @@ const App = () => {
           <Home/>
         </Route>
         <Route path="/products/:category">
-          <ProductList />
+          <ProductList/>
+        </Route>
+        <Route path="/products">
+          <AllProductList/>
         </Route>
         <Route path="/product/:id">
-          <Product />
+          <Product/>
         </Route>
         <Route path="/cart">
-          <Cart />
+          <Cart/>
         </Route>
         <Route path="/success">
           <Success/>
         </Route>
-        <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+        <Route path="/login">
+          {user ? <Redirect to="/" /> : <Login />}
+        </Route>
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}
         </Route>

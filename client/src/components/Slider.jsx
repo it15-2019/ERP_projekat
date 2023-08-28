@@ -17,7 +17,7 @@ const Container = styled.div`
 const Arrow = styled.div`
   width: 50px;
   height: 50px;
-  background-color: #fff7f7;
+  background-color: #dfe4dd;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -54,7 +54,9 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
+  margin: 20px;
   height: 80%;
+  width: 100%;
 `;
 
 const InfoContainer = styled.div`
@@ -63,7 +65,7 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 70px;
+  font-size: 50px;
 `;
 
 const Desc = styled.p`
@@ -104,7 +106,10 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Link to="/products/MED"><Button>SHOW NOW</Button></Link>
+              {item.cat == "SVE"? 
+              <Link to={"/products"}><Button>SHOW NOW</Button></Link> :
+              <Link to={"/products/" + item.cat}><Button>SHOW NOW</Button></Link>
+              }
             </InfoContainer>
           </Slide>
         ))}

@@ -3,9 +3,8 @@ import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
@@ -138,6 +137,7 @@ const Product = () => {
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.currentUser);
+  const history = useHistory();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -165,8 +165,8 @@ const Product = () => {
 
   return (
     <Container>
-      <Navbar />
       <Announcement />
+      <Navbar/>
       <Wrapper>
         <ImgContainer>
           <Image src={product.img} />
@@ -174,24 +174,31 @@ const Product = () => {
         <InfoContainer>
           <Title>{product.title}</Title>
           <Desc>{product.desc}</Desc>
-          <Price>$ {product.price}</Price>
+          <Price>{product.price} RSD</Price>
           <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor onChange={(e) => setColor(e.target.value)} >
-                {product.color?.map((c) => (
-                <FilterSizeOption key={c}>{c}</FilterSizeOption>
-                ))}
-              </FilterColor>
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize onChange={(e) => setSize(e.target.value)}>
-                {product.size?.map((s) => (
-                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                ))}
-              </FilterSize>
-            </Filter>
+              {product.category == "OPREMA"?  
+              <>
+              <Filter>
+                <FilterTitle>Color</FilterTitle> 
+                <FilterColor onChange={(e) => setColor(e.target.value)} >
+                  {product.color?.map((c) => (
+                  <FilterSizeOption key={c}>{c}</FilterSizeOption>
+                  ))}
+                </FilterColor>
+              </Filter>
+              </>
+              :
+              <>
+              <Filter>
+                <FilterTitle>Year</FilterTitle>
+                <FilterSize onChange={(e) => setSize(e.target.value)}>
+                  {product.size?.map((s) => (
+                    <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                  ))}
+                </FilterSize>
+              </Filter>
+              </>
+              }
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
@@ -208,8 +215,7 @@ const Product = () => {
           </>
         </InfoContainer>
       </Wrapper>
-      <Newsletter />
-      <Footer />
+      <Footer/>
     </Container>
   );
 };

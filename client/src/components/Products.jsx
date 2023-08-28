@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Product from "./Product";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const Container = styled.div`
@@ -22,7 +23,9 @@ const Products = ({ cat, filters, sort }) => {
             ? `http://localhost:5000/products?categories=${cat}`
             : "http://localhost:5000/products"
         );
-        setProducts(res.data);
+        const allProducts = res.data;
+        const categoryItems = allProducts.filter(item => item.categories === cat);
+        setProducts(categoryItems);
       } catch (err) {}
     };
     getProducts();

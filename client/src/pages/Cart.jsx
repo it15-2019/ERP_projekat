@@ -166,14 +166,14 @@ const Cart = () => {
 
   return (
     <Container>
-      <Navbar />
-      <Announcement />
+      <Announcement/>
+      <Navbar/>
       <Wrapper>
         <Top>
           <TopTexts>
           <Link to="/">
-          <TopButton>CONTINUE SHOPPING</TopButton>
-        </Link>
+            <TopButton>CONTINUE SHOPPING</TopButton>
+          </Link>
             <Title>YOUR BAG</Title>
           </TopTexts>
         </Top>

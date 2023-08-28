@@ -9,11 +9,20 @@ import {
   registerSuccess, 
   registerFailure 
  } from "./userRedux";
-import { publicRequest } from "../requestMethods";
+ import {
+  createCartStart,
+  createCartSuccess,
+  createCartFailure,
+  clearCart,
+  deleteCartStart,
+  deleteCartSuccess,
+  deleteCartFailure
+ } from "./cartRedux";
+import { publicRequest, userRequest } from "../requestMethods";
 
 export const url = "http://localhost:5000";
 
-//LOGIN
+// LOGIN
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try 
@@ -27,7 +36,7 @@ export const login = async (dispatch, user) => {
   }
 };
 
-//LOGOUT
+// LOGOUT
 export const logout = async (dispatch) => {
   dispatch(logoutStart());
   try 
@@ -41,7 +50,7 @@ export const logout = async (dispatch) => {
   }
 };
 
-//REGISTER
+// REGISTER
 export const register = async (dispatch, user) => {
   dispatch(registerStart());
   try 
@@ -52,6 +61,35 @@ export const register = async (dispatch, user) => {
   catch (err) 
   {
     dispatch(registerFailure());
+  }
+};
+
+// CREATE CART
+export const createCart = async (dispatch, cart) => {
+  dispatch(createCartStart());
+  try 
+  {
+    const res = await userRequest.post("/carts", cart);
+    dispatch(createCartSuccess(res.data));
+  } 
+  catch (err) 
+  {
+    dispatch(createCartFailure());
+  }
+};
+
+// DELETE CART
+export const deleteCart = async (id, dispatch) => {
+  dispatch(deleteCartStart());
+  try 
+  {
+    const res = await userRequest.delete(`/carts/${id}`);
+    dispatch(deleteCartSuccess(res.data));
+    clearCart();
+  } 
+  catch (err) 
+  {
+    dispatch(deleteCartFailure());
   }
 };
 

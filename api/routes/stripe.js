@@ -27,7 +27,7 @@ router.post('/create-checkout-session', async (req, res) => {
             id: item._id,
           },
         },
-        unit_amount: item.price * 100,
+        unit_amount: item.price*100,
       },
       quantity: item.quantity,
     };
@@ -60,8 +60,8 @@ const createOrder = async (customer, data) => {
     customerId: data.customer,
     paymentIntentId: data.payment_intent,
     products,
-    subtotal: data.amount_subtotal,
-    total: data.amount_total,
+    subtotal: data.amount_subtotal/100,
+    total: data.amount_total/100,
     shipping: data.customer_details,
     payment_status: data.payment_status
   });

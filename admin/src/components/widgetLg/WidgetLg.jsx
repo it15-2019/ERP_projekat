@@ -18,6 +18,7 @@ export default function WidgetLg() {
   const Button = ({ type }) => {
     return <button className={"widgetLgButton " + type}>{type}</button>;
   };
+
   return (
     <div className="widgetLg">
       <h3 className="widgetLgTitle">Latest transactions</h3>
@@ -31,7 +32,7 @@ export default function WidgetLg() {
         {orders.map((order) => (
           <tr className="widgetLgTr" key={order._id}>
             <td className="widgetLgUser">
-              <span className="widgetLgName">{order.userId}</span>
+              <span className="widgetLgName">{order.shipping.name}</span>
             </td>
             <td className="widgetLgDate">{order.createdAt}</td>
             <td className="widgetLgAmount">{order.total}RSD</td>

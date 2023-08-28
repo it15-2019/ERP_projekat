@@ -21,6 +21,7 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+
     //DELETE
     deleteProductStart: (state) => {
       state.isFetching = true;
@@ -37,6 +38,7 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+
     //UPDATE
     updateProductStart: (state) => {
       state.isFetching = true;
@@ -52,7 +54,8 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    //UPDATE
+
+    //ADD/UPDATE
     addProductStart: (state) => {
       state.isFetching = true;
       state.error = false;

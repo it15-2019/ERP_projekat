@@ -1,9 +1,8 @@
 import "./sidebar.css";
 import {
-  PermIdentity,
+  LineStyle,
   Storefront,
-  LocalMallOutlined,
-  HomeOutlined
+  ShoppingBasketOutlined
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
@@ -12,20 +11,19 @@ export default function Sidebar() {
     <div className="sidebar">
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Quick Menu</h3>
+          <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
-              <li className="sidebarListItem">
-                <HomeOutlined className="sidebarIcon" />
-                Home
-              </li>
+            <li className="sidebarListItem active">
+              <LineStyle className="sidebarIcon" />
+              Home
+            </li>
             </Link>
-            <Link to="/users" className="link">
-              <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
-                Users
-              </li>
-            </Link>
+          </ul>
+        </div>
+        <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Quick Menu</h3>
+          <ul className="sidebarList">
             <Link to="/products" className="link">
               <li className="sidebarListItem">
                 <Storefront className="sidebarIcon" />
@@ -34,7 +32,7 @@ export default function Sidebar() {
             </Link>
             <Link to="/orders" className="link">
               <li className="sidebarListItem">
-                <LocalMallOutlined className="sidebarIcon" />
+                <ShoppingBasketOutlined className="sidebarIcon" />
                 Orders
               </li>
             </Link>

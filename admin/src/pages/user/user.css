@@ -13,7 +13,7 @@
   width: 80px;
   border: none;
   padding: 5px;
-  background-color: teal;
+  background-color: orange;
   border-radius: 5px;
   cursor: pointer;
   color: white;
@@ -22,7 +22,9 @@
 
 .userContainer {
   display: flex;
+  width: fit-content;
   margin-top: 20px;
+  flex-direction: column;
 }
 
 .userShow {
@@ -98,14 +100,22 @@
 
 .userUpdateForm{
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
 
 .userUpdateItem{
+    width: 400px;
     display: flex;
     flex-direction: column;
     margin-top: 10px;
+    margin-right: 20px;
+}
+
+.userUpdateSelect{
+  height: 20px;
+  width: 70px;
+  border-radius: 5px;
 }
 
 .userUpdateItem>label{
@@ -120,11 +130,6 @@
     border-bottom: 1px solid gray;
 }
 
-.userUpdateRight{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 
 .userUpdateUpload{
     display: flex;
@@ -139,16 +144,16 @@
     margin-right: 20px;
 }
 
-.userUpdateIcon{
-    cursor: pointer;
-}
 
 .userUpdateButton{
     border-radius: 5px;
     border: none;
-    padding: 5px;
+    width: 100px;
+    height: 50px;
+    position: relative;
     cursor: pointer;
-    background-color: darkblue;
+    background-color: orange;
     color: white;
     font-weight: 600;
+    cursor: pointer;
 }

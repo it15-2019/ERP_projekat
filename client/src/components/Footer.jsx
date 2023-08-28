@@ -1,6 +1,7 @@
 import { Facebook,Instagram,MailOutline,Phone,Pinterest,Room,Twitter,} from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ const Center = styled.div`
 
 const Title = styled.h3`
   margin-bottom: 30px;
+  font-size: 30px;
 `;
 
 const List = styled.ul`
@@ -76,15 +78,28 @@ const Payment = styled.img`
     width: 50%;
 `;
 
+const Image = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+`;
+
+const Image2 = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+`;
+
 const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>LAMA.</Logo>
+        <Logo><Image src="https://i.etsystatic.com/13434992/r/il/3bf90f/3219303725/il_1588xN.3219303725_kovf.jpg"/> PČELICA CAJA <Image2 src="https://i.etsystatic.com/13434992/r/il/3bf90f/3219303725/il_1588xN.3219303725_kovf.jpg"/></Logo>
         <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
+          Dobrodosli u prodavnicu kompletnog pcelarskog seta: od opreme do 
+          najfinijih pcelarskih prirodnih proizvoda: med, polen... Zajedno za organizacijom
+          ,,Sacuvajmo pcele'', imamo cilj da se ovi vredni insekti sacuvaju od raznih otrova koje
+          pustaju u vazduh.
         </Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -102,30 +117,18 @@ const Footer = () => {
         </SocialContainer>
       </Left>
       <Center>
-        <Title>Useful Links</Title>
-        <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
-        </List>
+
       </Center>
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{marginRight:"10px"}}/> 622 Dixie Path , South Tobinchester 98336
+          <Room style={{marginRight:"10px", color:"black"}}/> Novi Sad, Srbija
         </ContactItem>
         <ContactItem>
-          <Phone style={{marginRight:"10px"}}/> +1 234 56 78
+          <Phone style={{marginRight:"10px", color:"orange"}}/>+381631040899
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{marginRight:"10px"}} /> contact@lama.dev
+          <MailOutline style={{marginRight:"10px", color:"darkyellow"}} />sofijadangubic8@gmail.com
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>

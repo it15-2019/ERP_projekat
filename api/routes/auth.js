@@ -4,7 +4,6 @@ const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 
-
 //REGISTER
 router.post("/register", 
   [
@@ -18,11 +17,17 @@ router.post("/register",
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       username: req.body.username,
+      gender: req.body.gender,
+      birthday: req.body.birthday,
+      address: req.body.address,
+      city: req.body.city,
+      phoneNumber: req.body.phoneNumber, 
       email: req.body.email,
       password: CryptoJS.AES.encrypt(
         req.body.password,
         process.env.PASS_SEC
-      ).toString()
+      ).toString(),
+      img: req.body.img
     });
 
     const errors = validationResult(req);
@@ -44,10 +49,11 @@ router.post("/register",
     }
 });
 
-
 //LOGIN
 router.post("/login", async (req, res) => {
-  try {
+  try 
+  {
+
     const user = await User.findOne({ username: req.body.username });
     !user && res.status(401).json("Wrong username!");
 
@@ -55,11 +61,11 @@ router.post("/login", async (req, res) => {
       user.password,
       process.env.PASS_SEC
     );
+    const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
-    const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+    OriginalPassword !== req.body.password &&
+      res.status(401).json("Wrong password!");
 
-    originalPassword !== req.body.password && res.status(401).json("Wrong password!");
-    
     const accessToken = jwt.sign(
       {
         id: user._id,
@@ -70,13 +76,11 @@ router.post("/login", async (req, res) => {
     );
 
     const { password, ...others } = user._doc;
-    
 
     res.status(200).json({...others, accessToken});
   } 
-  catch (err) 
-  {
-    res.status(500).json(err);
+  catch (err) {
+    //res.status(500).json(err);
   }
 });
 
@@ -87,7 +91,6 @@ router.get("/logout", async (req, res) => {
     const user = await User.findOne();
     !user && res.status(401).json("Nobody is registed!");
 
-    const accessToken = null;
     const { password, ...others } = user._doc;
   
     res.status(200).send("User is logged out.");

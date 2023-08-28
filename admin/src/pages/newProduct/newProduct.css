@@ -1,5 +1,6 @@
 .newProduct {
   flex: 4;
+  margin-left: 100px;
 }
 
 .addProductForm {
@@ -32,8 +33,12 @@
   padding: 7px 10px;
   border: none;
   border-radius: 10px;
-  background-color: darkblue;
+  background-color: orange;
   color: white;
   font-weight: 600;
   cursor: pointer;
+  &:disabled {
+    color: teal;
+    cursor: not-allowed;
+  }
 }

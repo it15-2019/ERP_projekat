@@ -78,12 +78,12 @@ const Login = () => {
       <Wrapper>
         <Title>LOG IN</Title>
         <Form>
-          <Input placeholder="Username" type="email" onChange={(e) => setUsername(e.target.value)}/>
-          <Input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}/>
+          <Input placeholder="Username" type="email" onChange={(e) => setUsername(e.target.value)} required="true"/>
+          <Input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} required="true"/>
           <Button onClick={handleClick} disabled={isFetching}>
             LOGIN
           </Button>
-          {error && <Error>Something went wrong...</Error>}
+          {error && <Error>Username or password isn't valid!</Error>}
           <p>If you don't have account, register <Link to="/register">HERE</Link></p>
         </Form>
       </Wrapper>

@@ -4,12 +4,14 @@ import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../redux/apiCalls";
-import { userRequest } from "../requestMethods";
+import { Link, useHistory } from "react-router-dom";
+import { logout, createCart } from "../redux/apiCalls";
+import { clearCart } from "../redux/cartRedux"; 
+import { useState } from "react";
 
 const Container = styled.div`
   height: 60px;
+  background-color: #fedd9f;
   ${mobile({ height: "50px" })}
 `;
 
@@ -34,6 +36,7 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
+  cursor: pointer;
   ${mobile({ fontSize: "24px" })}
 `;
 
@@ -54,12 +57,23 @@ const MenuItem = styled.div`
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user.currentUser);
+
+  const history = useHistory();
 
   const handleClick = (e) => {
     e.preventDefault();
+
+    //createCart(cart, dispatch);
     logout(dispatch);
+    history.push('/');
   };
+
+  const navigateClick = (e) => {
+    history.push('/');
+  };
+
 
   return (
     <Container>
@@ -67,14 +81,14 @@ const Navbar = () => {
         <Left>
         <Link to="/cart">
           <Button>
-            <Badge badgeContent={quantity} color="primary">
+            <Badge badgeContent={user? quantity : 0} color="primary">
               <ShoppingCartOutlined color="black"/>
             </Badge>
           </Button>
           </Link>
         </Left>
         <Center>
-            <Logo>PČELICA CAJA</Logo>
+            <Logo onClick={navigateClick}>PČELICA CAJA</Logo>
         </Center>
         <Right>
           { user? 
